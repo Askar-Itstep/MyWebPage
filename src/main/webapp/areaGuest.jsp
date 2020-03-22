@@ -17,7 +17,7 @@
     <h1>Персональный сайт гостя</h1>
     <div id="nav">
         <ul>
-            <li><a href = "http://localhost:8080">Выйти </a></li>
+            <li><a href = "http://localhost:8080/MyWebPage_war/">Выйти </a></li>
             <li><a href ="<c:url value="/mainForUser.jsp"/>" class="disabled">Главная</a></li>
             <li><a href ="<c:url value="/forum.jsp"/>" class="disabled">Форум</a></li>
             <li><a href= "<c:url value="/contactus.jsp"/>"class="disabled">Контакты</a></li>

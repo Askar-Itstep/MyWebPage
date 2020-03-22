@@ -122,8 +122,8 @@ public class PersonDao extends AbstractDao<Person> {
 
     @Override
     public void update(Person person) throws DaoException {
-        String sqlQuery = "UPDATE persons SET username=?, age=?, credo=?, password=?, avatar_id=?, role_id=?, login=? " +
-                "email=?, phone=?, address=?WHERE id =?";
+        String sqlQuery = "UPDATE persons SET username=?, age=?, credo=?, password=?, avatar_id=?, role_id=?, login=?," +
+                "remove_at=?, email=?, phone=?, address=? WHERE id =?";
         Connection connection = getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
@@ -139,11 +139,14 @@ public class PersonDao extends AbstractDao<Person> {
             preparedStatement.setInt(6, person.getRoleId());
             preparedStatement.setString(7, person.getLogin());
 
-            preparedStatement.setString(8, person.getEmail());
-            preparedStatement.setString(9, person.getPhone());
-            preparedStatement.setString(10, person.getAddress());
-
-            preparedStatement.setLong(11,  person.getId());
+            if(person.getDateDel()==null){
+                person.setDateDel(new Date(200,1,1));
+            }
+            preparedStatement.setDate(8, person.getDateDel());
+            preparedStatement.setString(9, person.getEmail());
+            preparedStatement.setString(10, person.getPhone());
+            preparedStatement.setString(11, person.getAddress());
+            preparedStatement.setLong(12,  person.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e){
             LOGGER.error("Update user ends with error", e.fillInStackTrace());

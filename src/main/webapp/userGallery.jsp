@@ -16,7 +16,7 @@
             localStorage['keyGuest'] = '${flagGuest}';
             var guest = localStorage['keyGuest'];
             if(guest != 'true') {
-                alert("Это хозяин страницы");
+                // alert("Это хозяин страницы");
                 $('input').attr('disabled', false);
                 $('.myRef').click(function(e) {
                     return true;
@@ -36,7 +36,7 @@
     <h1>Персональный сайт ${person.username}</h1>
     <div id="nav">
         <ul>
-            <li><a href = "http://localhost:8080">Выйти </a></li>
+            <li><a href = "http://localhost:8080/MyWebPage_war/">Выйти </a></li>
             <li><a href ="<c:url value="/mainForUser.jsp"/>">Главная</a></li>
             <li><a class="myRef" href ="<c:url value="/forum.jsp"/>">Форум</a></li>
             <li><a href="#">Контакты</a></li>

@@ -38,9 +38,14 @@ public class ConnectionManager {
                 synchronized (ConnectionManager.class) {
                     newInstance = connectionPool;
                     if (newInstance == null) {
-                        connectionPool = newInstance = new BoneCP(config);
-                        log.info("Context initialized and connection pool was configured");
-                        log.info("Total available connections: " + connectionPool.getTotalCreatedConnections());
+                        try {
+                            connectionPool = newInstance = new BoneCP(config);
+                            log.info("Context initialized and connection pool was configured");
+                            log.info("Total available connections: " + connectionPool.getTotalCreatedConnections());
+                        }
+                        catch (Exception e){
+                            throw new ConnectionManagerErrorHandler(e);
+                        }
                     }
                 }
             }

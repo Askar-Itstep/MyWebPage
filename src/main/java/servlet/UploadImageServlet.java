@@ -79,7 +79,6 @@ public class UploadImageServlet extends HttpServlet {
 
             //флаг для  аватара (из uploadImage.jsp
             boolean flagAvatar = Boolean.parseBoolean(request.getParameter("flagAvatar"));
-//            System.out.println("UploadServ: flagAvatar="+flagAvatar);     //true
             //и если это аватар
             if(flagAvatar){
                 try {                    //----------------------вытащить все img актора
@@ -88,11 +87,9 @@ public class UploadImageServlet extends HttpServlet {
                     e.printStackTrace();
                     LOGGER.error(e);
                 }
-                                        //---------после добавл. в БД вытащить img по его назв.
+                                        //---------после добавл. в БД вытащить img из коллекции по его назв.
                 String finalFilename = filename;
                 image=images.stream().filter(i->i.getImageName().equals(finalFilename)).findFirst().get();
-//                System.out.println("UploadServ: image.name="+image.getImage_name());                    //!!
-//                System.out.println("UploadServ: image.getId()="+image.getId());     //!!
 
  //найти person и установ. ему avatar_id  + измен. в БД/ (jsp сама распределит на аватар и галерею)
 
